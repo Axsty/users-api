@@ -49,8 +49,8 @@ public class AppUserServiceTest {
 
         List<AppUserResponseDTO> result = appUserService.findAll();
 
-        assertEquals("axel", result.getFirst().username());
-        assertEquals("marie", result.getLast().username());
+        assertEquals("axel", result.get(0).username());
+        assertEquals("marie", result.get(1).username());
         Mockito.verify(appUserRepository).findAll();
     }
 
