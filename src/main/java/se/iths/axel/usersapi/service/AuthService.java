@@ -29,20 +29,17 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtEncoder jwtEncoder;
     private final KeyPair keyPair;
-    private final String jwtIssuer;
     private final long jwtExpirationMinutes;
     private final String jwtKeyId;
 
     public AuthService(AuthenticationManager authenticationManager,
                        JwtEncoder jwtEncoder,
                        KeyPair keyPair,
-                       @Value("${app.jwt.issuer}") String jwtIssuer,
                        @Value("${app.jwt.expiration-minutes}") long jwtExpirationMinutes,
                        @Value("${app.jwt.key-id}") String jwtKeyId) {
         this.authenticationManager = authenticationManager;
         this.jwtEncoder = jwtEncoder;
         this.keyPair = keyPair;
-        this.jwtIssuer = jwtIssuer;
         this.jwtExpirationMinutes = jwtExpirationMinutes;
         this.jwtKeyId = jwtKeyId;
     }
@@ -66,7 +63,6 @@ public class AuthService {
         Instant expiresAt = now.plus(jwtExpirationMinutes, ChronoUnit.MINUTES);
 
         JwtClaimsSet.Builder claimsBuilder = JwtClaimsSet.builder()
-                .issuer(jwtIssuer)
                 .issuedAt(now)
                 .expiresAt(expiresAt)
                 .subject(principal.getUsername())

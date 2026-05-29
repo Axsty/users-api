@@ -20,16 +20,13 @@ public class DataInit {
     @PostConstruct
     public void init() {
         AppUser appUser = new AppUser();
-
-        appUser.setUsername("axel@gmail.com");
+        appUser.setUsername("axelstaaffriborg@gmail.com");
         appUser.setPassword("password");
         appUser.setRole("ADMIN");
-
         String encoded = encoder.encode(appUser.getPassword());
-
         appUser.setPassword(encoded);
-
         appUserRepository.save(appUser);
+
         IO.println("Init successful");
     }
 }

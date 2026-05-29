@@ -1,6 +1,5 @@
 package se.iths.axel.usersapi.security;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,7 +25,7 @@ public class MyUserDetailService implements UserDetailsService {
         return User.builder()
                 .username(appUser.getUsername())
                 .password(appUser.getPassword())
-                .authorities(new SimpleGrantedAuthority(appUser.getRole()))
+                .roles(appUser.getRole())
                 .build();
     }
 }
