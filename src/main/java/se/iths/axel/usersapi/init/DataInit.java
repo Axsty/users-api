@@ -27,6 +27,6 @@ public class DataInit {
         appUser.setPassword(encoded);
         appUserRepository.save(appUser);
 
-        IO.println("Init successful");
+        System.out.println("Init successful");
     }
 }
